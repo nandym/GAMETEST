@@ -1,0 +1,16 @@
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var socket = io();
+
+
+        socket.emit('cliserv',{
+            response:Math.floor(Math.random()*1000)
+
+        });
+
+    socket.on('serverMsg',function(helloing){
+        console.log(helloing.msg);
+    });
+
+
+</script>
