@@ -6,14 +6,17 @@ var io = require("socket.io")(serv,{});
 
 
 
-app.get("/",function(req, res){
-res.sendFile(__dirname+"/client/index.html");
+app.get('/', function(request, response) {
+  response.render('client/index.html');
 });
-app.use("/client/",express.static(__dirname+"/client"));
 
 
+
+
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});
 console.log("Gives me the information that the server has started.")
-serv.listen(8080);
 /*
 
 */
