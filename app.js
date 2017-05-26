@@ -4,7 +4,7 @@ var serv = require("http").Server(app);
 //requires the socket used for communication client<->server (Goes both ways)
 var io = require("socket.io")(serv,{});
 
-
+app.set('port', (process.env.PORT || 5000));
 
 app.get('/', function(request, response) {
   response.render('client/index.html');
