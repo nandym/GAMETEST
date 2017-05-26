@@ -13,22 +13,26 @@ app.use("/client/",express.static(__dirname+"/client"));
 
 
 console.log("Gives me the information that the server has started.")
-serv.listen(2000);
+serv.listen(8080);
 /*
 
 */
 
 var socket_Players = {};
 
+
 /*
-
-
+hehehe
+>:(
+:P
+indeed
+Success!
 */
 
 io.sockets.on('connection', function(socket){
 //nice stuff like stats eh
   socket.id =Math.floor(Math.random()*10000);
-  socket.x = 0:
+  socket.x = 0;
   socket.y = 0;
   socket_Players[socket.id] = socket;
 
@@ -42,21 +46,27 @@ io.sockets.on('connection', function(socket){
     socket.emit("serverMsg",{
       msg:"Hello"
 
-    })
+    });
 });
 
-Loop(function(){
+setInterval(function(){
+var pack = [];
   for(var i  in socket_Players){
-      console.log(socket_Players[i]);
+      console.log(socket_Players[i].id,socket_Players[i].x,socket_Players[i].y);
       var socket = socket_Players[i];
       socket.y++;
       socket.x++;
-      socket.emit("nPos",{
+      pack.push({
+        x:socket.x,
+        y:socket.y
+      })
 
-      });
   }
-
-}.1000/25);
+  for(var i in socket_Players){
+  var socket = socket_Players[i];
+  socket.emit("nPos",pack);
+}
+},1000/25);
 
 io.sockets.on("disconnection",function(disc){
   disc.on('cliserv',function(data){

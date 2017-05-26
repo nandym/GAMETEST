@@ -1,13 +1,19 @@
+<canvas id="ctx" width="900" height="900" style="border:2px solid #000000;"></canvas>
 <script src="/socket.io/socket.io.js"></script>
 <script>
     var socket = io();
-
-
+    var ctx = document.getElementById("ctx").getContext("2d");
+        ctx.font = "30px Arial"
         socket.emit('cliserv',{
             response:Math.floor(Math.random()*1000)
 
         });
+        socket.on("nPos",function(data){
+          ctx.clearRect(0,0,900,900);
+          for(var i=0 ; i < data.length; i++)
+          ctx.fillText("O",data[i].x,data[i].y);
 
+        });
     socket.on('serverMsg',function(helloing){
         console.log(helloing.msg);
     });
